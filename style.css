@@ -1,0 +1,541 @@
+/* =====================================================
+   KENANGAN WEBSITE — style.css
+   Jangan ubah file ini kecuali bagian :root di bawah
+   untuk kustomisasi warna tema.
+   ===================================================== */
+
+/* ---- WARNA TEMA (edit di sini jika ingin ganti warna) ---- */
+:root {
+  /* Background */
+  --bg:         #0a0806;
+  --bg-alt:     #12100c;
+  --surface:    #1c1612;
+  --border:     rgba(200, 130, 60, 0.15);
+
+  /* Teks */
+  --text:       #ede0c8;
+  --text-dim:   #9a8a78;
+  --text-faint: #4e4338;
+
+  /* Aksen */
+  --amber:      #c8864a;   /* warna utama: tombol, tanggal, aksen */
+  --amber-lite: #e0a870;
+  --cream:      #f0e4cc;   /* warna teks heading terang */
+  --pol-bg:     #f5edd8;   /* background polaroid */
+
+  /* Lainnya */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---- RESET ---- */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; }
+
+body {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+  height: 100vh;
+}
+
+button  { cursor: pointer; font-family: inherit; }
+img     { max-width: 100%; display: block; }
+video   { max-width: 100%; display: block; }
+
+/* ---- GRAIN FILM OVERLAY ---- */
+.grain {
+  position: fixed; inset: 0; z-index: 9999;
+  pointer-events: none;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 180px;
+  animation: grain-move 0.35s steps(1) infinite;
+}
+@keyframes grain-move {
+  0%  { transform: translate(0, 0); }
+  20% { transform: translate(-4px, 2px); }
+  40% { transform: translate(2px, -4px); }
+  60% { transform: translate(4px, 1px); }
+  80% { transform: translate(-2px, 4px); }
+}
+
+/* ---- NAV DOTS ---- */
+.nav-dots {
+  position: fixed;
+  right: 22px; top: 50%;
+  transform: translateY(-50%);
+  z-index: 500;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.nav-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  border: 1.5px solid var(--text-dim);
+  background: transparent;
+  transition: all 0.3s var(--ease);
+  cursor: pointer;
+}
+.nav-dot:hover  { border-color: var(--amber); }
+.nav-dot.active {
+  background: var(--amber);
+  border-color: var(--amber);
+  transform: scale(1.4);
+}
+
+/* ---- SLIDES WRAPPER ---- */
+.wrap {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+.wrap::-webkit-scrollbar { display: none; }
+
+/* ---- SLIDE BASE ---- */
+.slide {
+  height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Garis tipis pemisah antar slide */
+.slide::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+/* Center helper */
+.center {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  padding: 48px 40px;
+  position: relative; z-index: 2;
+}
+
+/* Animasi fade-in per slide */
+.center > * {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.95s var(--ease), transform 0.95s var(--ease);
+}
+.slide.on .center > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Dekorasi sudut (welcome & closing) */
+.corner-tl, .corner-br {
+  position: absolute;
+  width: 56px; height: 56px;
+  border-color: var(--border);
+  border-style: solid;
+  opacity: 0.7;
+  transition: opacity 1.2s var(--ease);
+}
+.corner-tl { top: 26px; left: 26px; border-width: 1px 0 0 1px; }
+.corner-br { bottom: 26px; right: 26px; border-width: 0 1px 1px 0; }
+
+/* =====================================================
+   TIPOGRAFI GLOBAL
+   ===================================================== */
+
+.script-tag {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.15rem;
+  color: var(--amber);
+  display: block;
+  margin-bottom: 8px;
+  letter-spacing: 0.03em;
+}
+
+.big-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 22px;
+}
+
+.body-text {
+  font-size: 0.97rem;
+  line-height: 1.88;
+  color: var(--text-dim);
+  max-width: 480px;
+  margin-bottom: 34px;
+}
+
+.signature {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.6rem;
+  color: var(--amber);
+  margin: 6px 0 36px;
+}
+
+/* =====================================================
+   TOMBOL
+   ===================================================== */
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid rgba(200, 134, 74, 0.45);
+  color: var(--amber);
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 11px 28px;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+.btn-outline:hover {
+  background: var(--amber);
+  color: var(--bg);
+  border-color: var(--amber);
+}
+
+.btn-play {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--amber);
+  border: 1px solid transparent;
+  color: var(--bg);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 14px 34px;
+  transition: background 0.25s, color 0.25s, border-color 0.25s,
+              transform 0.2s, box-shadow 0.25s;
+}
+.btn-play:hover {
+  background: var(--amber-lite);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(200, 134, 74, 0.35);
+}
+.btn-play.paused {
+  background: transparent;
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+/* =====================================================
+   SLIDE 1 — WELCOME
+   ===================================================== */
+
+.s-welcome {
+  background:
+    radial-gradient(ellipse 100% 70% at 25% 50%, #1e1208 0%, transparent 70%),
+    radial-gradient(ellipse 80% 60% at 75% 80%, #0d1018 0%, transparent 70%),
+    var(--bg);
+}
+
+.welcome-box {
+  max-width: 560px;
+  text-align: center;
+}
+
+.welcome-box .body-text {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Divider dekoratif sebelum tombol */
+.welcome-box .body-text::after {
+  content: '— ✦ —';
+  display: block;
+  color: var(--amber);
+  margin: 22px auto 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.35em;
+  opacity: 0.5;
+}
+
+/* =====================================================
+   SLIDE 2 — MUSIC
+   ===================================================== */
+
+.s-music {
+  background:
+    radial-gradient(ellipse 85% 70% at 65% 40%, #140d1c 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 30% 70%, #1a1008 0%, transparent 65%),
+    var(--bg);
+}
+
+.music-box {
+  max-width: 400px;
+  text-align: center;
+}
+
+.note-icon {
+  font-size: 2.8rem;
+  color: var(--amber);
+  margin-bottom: 18px;
+  display: block;
+  animation: float 3.5s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-9px); }
+}
+
+.song-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--cream);
+  margin-bottom: 6px;
+}
+
+.song-artist {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  letter-spacing: 0.12em;
+  margin-bottom: 14px;
+}
+
+.song-note {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1rem;
+  color: var(--amber);
+  opacity: 0.72;
+  margin-bottom: 28px;
+}
+
+/* Visualizer bars */
+.visualizer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 5px;
+  height: 36px;
+  margin: 16px auto 0;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.visualizer.on { opacity: 1; }
+
+.visualizer i {
+  display: block;
+  width: 4px;
+  border-radius: 2px;
+  background: var(--amber);
+  height: 4px;
+}
+.visualizer.on i { animation: bar 0.7s ease-in-out infinite alternate; }
+
+.visualizer i:nth-child(1) { animation-duration: 0.48s; }
+.visualizer i:nth-child(2) { animation-duration: 0.65s; animation-delay: 0.05s; }
+.visualizer i:nth-child(3) { animation-duration: 0.52s; animation-delay: 0.10s; }
+.visualizer i:nth-child(4) { animation-duration: 0.75s; animation-delay: 0.15s; }
+.visualizer i:nth-child(5) { animation-duration: 0.58s; animation-delay: 0.08s; }
+.visualizer i:nth-child(6) { animation-duration: 0.70s; animation-delay: 0.12s; }
+.visualizer i:nth-child(7) { animation-duration: 0.44s; animation-delay: 0.06s; }
+.visualizer i:nth-child(8) { animation-duration: 0.62s; animation-delay: 0.14s; }
+.visualizer i:nth-child(9) { animation-duration: 0.55s; animation-delay: 0.03s; }
+
+@keyframes bar { from { height: 4px; } to { height: 28px; } }
+
+/* =====================================================
+   SLIDE KENANGAN — s-mem
+   ===================================================== */
+
+.s-mem {
+  background: var(--bg);
+}
+.s-mem::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(
+    ellipse 130% 80% at 50% 50%,
+    rgba(200, 130, 60, 0.032) 0%,
+    transparent 70%
+  );
+}
+
+/* Grid dua kolom */
+.mem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 68px;
+  align-items: center;
+  max-width: 960px;
+  width: 100%;
+}
+
+/* Balik layout: foto ke kanan, teks ke kiri */
+.mem-grid.flip {
+  direction: rtl;
+}
+.mem-grid.flip > * {
+  direction: ltr;
+}
+
+/* Nomor watermark */
+.mem-num {
+  position: absolute;
+  bottom: 22px; right: 38px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 7rem;
+  font-weight: 300;
+  color: rgba(200, 130, 60, 0.05);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
+
+.mem-date {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.1rem;
+  color: var(--amber);
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+}
+
+.mem-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.mem-text .body-text {
+  margin-bottom: 18px;
+}
+
+.mem-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.04rem;
+  color: var(--text-faint);
+  border-left: 2px solid var(--amber);
+  padding-left: 14px;
+  line-height: 1.68;
+}
+
+/* =====================================================
+   POLAROID FRAME
+   ===================================================== */
+
+.polaroid {
+  background: var(--pol-bg);
+  padding: 10px 10px 44px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.72);
+  transform: rotate(-2.2deg);
+  transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease);
+  position: relative;
+}
+.polaroid:hover {
+  transform: rotate(0deg) scale(1.018);
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.85);
+}
+
+.polaroid img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.pol-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+  font-size: 0.92rem;
+  color: #7a6450;
+  padding: 8px;
+  line-height: 1;
+}
+
+/* =====================================================
+   VIDEO FRAME
+   ===================================================== */
+
+.vid-wrap {
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.72);
+  border: 3px solid var(--surface);
+}
+.vid-wrap video {
+  width: 100%;
+  display: block;
+}
+
+/* =====================================================
+   SLIDE PENUTUP — s-closing
+   ===================================================== */
+
+.s-closing {
+  background:
+    radial-gradient(ellipse 90% 70% at 70% 55%, #10081a 0%, transparent 65%),
+    radial-gradient(ellipse 70% 50% at 20% 40%, #0e1208 0%, transparent 65%),
+    var(--bg);
+}
+
+.closing-box {
+  max-width: 560px;
+  text-align: center;
+}
+.closing-box .body-text {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.closing-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 6vw, 4.8rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--cream);
+  line-height: 1.1;
+  margin-bottom: 22px;
+  letter-spacing: -0.01em;
+}
+
+/* =====================================================
+   RESPONSIVE — Mobile
+   ===================================================== */
+
+@media (max-width: 768px) {
+  /* Stack kolom menjadi satu */
+  .mem-grid,
+  .mem-grid.flip {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    direction: ltr;
+  }
+
+  /* Izinkan scroll dalam slide jika konten melebihi layar */
+  .center {
+    padding: 28px 20px;
+    overflow-y: auto;
+    align-items: flex-start;
+    padding-top: 56px;
+  }
+
+  .slide {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .nav-dots       { right: 10px; }
+  .big-name       { font-size: 2.8rem; }
+  .mem-num        { font-size: 4.5rem; }
+  .closing-title  { font-size: 2.5rem; }
+
+  /* Corner pada mobile lebih kecil */
+  .corner-tl, .corner-br { width: 40px; height: 40px; }
+}

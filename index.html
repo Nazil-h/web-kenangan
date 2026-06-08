@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ================================================
+    📝 [EDIT] Ganti judul tab browser di bawah ini
+  ================================================ -->
+  <title>Kenangan Kita ✨</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@500;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Nav dots (diisi otomatis oleh script.js, jangan diubah) -->
+  <nav class="nav-dots" id="navDots"></nav>
+
+  <!-- Efek grain film (jangan diubah) -->
+  <div class="grain"></div>
+
+  <!-- ================================================
+    🎵 BACKGROUND MUSIC
+    📝 [EDIT] Ganti path file musik di bawah ini.
+         Taruh file MP3 di folder assets/music/
+  ================================================ -->
+  <audio id="bgMusic" loop>
+    <source src="assets/music/lagu.mp3" type="audio/mpeg">
+  </audio>
+
+
+  <!-- ============================================================
+    SLIDES CONTAINER (jangan ubah tag <main> ini)
+  ============================================================ -->
+  <main class="wrap" id="wrap">
+
+
+    <!-- ===========================================================
+      SLIDE 1 ✨ UCAPAN PEMBUKA
+      Edit teks di antara komentar [EDIT] dan [/EDIT]
+    =========================================================== -->
+    <section class="slide s-welcome" data-slide="1">
+      <div class="center">
+        <div class="welcome-box">
+
+          <!-- [EDIT] Kata sapaan (contoh: "Untuk", "Hey,", "Khusus untuk") -->
+          <span class="script-tag">Hii..</span>
+
+          <!-- [EDIT] Nama orang yang dituju -->
+          <h1 class="big-name">Salwa Atika Wardani</h1>
+
+          <!-- [EDIT] Pesan pembuka. 2–4 kalimat sudah cukup. -->
+          <p class="body-text">
+            Pertama-tama makasih ya salwa udah meluangkan secercah waktumu buat buka website jelek inii wkwkwk.
+            Ini mungkin hadiah terakhirku buat kamuu, isinya kenangan-kenangan kita berdua. <br>
+            Btw aku buat ini biar kamu inget atau bisa nostalgia aja si kalo kita berdua pernah bersama hahaha....
+          </p>
+
+          <!-- [EDIT OPSIONAL] Ganti teks tombol jika mau -->
+          <button class="btn-outline" onclick="toSlide(2)">Mulai ↓</button>
+
+        </div>
+      </div>
+      <div class="corner-tl"></div>
+      <div class="corner-br"></div>
+    </section>
+
+
+    <!-- ===========================================================
+      SLIDE 2 🎵 MUSIK
+      Edit info lagu di bawah
+    =========================================================== -->
+    <section class="slide s-music" data-slide="2">
+      <div class="center">
+        <div class="music-box">
+
+          <span class="note-icon">𝄞</span>
+
+          <!-- [EDIT] Judul lagu -->
+          <h2 class="song-title">Selir Hati</h2>
+
+          <!-- [EDIT] Nama artis atau penyanyi -->
+          <p class="song-artist">— T.R.I.A.D</p>
+
+          <!-- [EDIT OPSIONAL] Pesan kecil tentang lagu ini. Hapus tag <p> jika tidak mau. -->
+          <p class="song-note">"Eitss... sebelum itu kita setel lagu kesukaanmu dulu ga sii."</p>
+
+          <button class="btn-play" id="playBtn" onclick="toggleMusic()">
+            <span id="playIcon">▶</span>
+            <span id="playText">Putar Musik</span>
+          </button>
+
+          <!-- Visualizer (aktif otomatis saat musik play) -->
+          <div class="visualizer" id="visualizer">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+
+          <!-- [EDIT OPSIONAL] Ganti teks tombol -->
+          <button class="btn-outline" style="margin-top: 28px;" onclick="toSlide(3)">
+            Lihat Kenangan →
+          </button>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===========================================================
+      SLIDE KENANGAN — TEMPLATE
+
+      📌 CARA MENAMBAH KENANGAN BARU:
+      ──────────────────────────────────────────────────────────
+      1. Copy seluruh blok <section class="slide s-mem"> ... </section>
+      2. Paste setelah kenangan terakhir (sebelum SLIDE PENUTUP)
+      3. Ganti data-slide="X" → isi X dengan nomor urut berikutnya
+      4. Isi foto/video dan teks (cari komentar [EDIT])
+      5. Untuk membalik layout foto-teks, tambahkan class "flip"
+         pada div.mem-grid (disarankan bergantian)
+      6. Update angka di <div class="mem-num"> sesuai urutan
+      ──────────────────────────────────────────────────────────
+
+      📷 FOTO  → gunakan blok .polaroid (sudah aktif)
+      🎥 VIDEO → hapus blok .polaroid, uncomment blok .vid-wrap
+    =========================================================== -->
+
+
+    <!-- KENANGAN #1 — layout: foto kiri, teks kanan -->
+    <section class="slide s-mem" data-slide="3">
+      <div class="center">
+        <div class="mem-grid flip">
+
+          <!-- KOLOM MEDIA -->
+          <div class="mem-media">
+
+            <!-- 📷 FOTO: Ganti src dan alt -->
+            <div class="polaroid">
+              <img src="assets/photos/fotbar1.jpg" alt="Deskripsi foto 1">
+              <!-- [EDIT OPSIONAL] Caption di bawah foto polaroid -->
+              <span class="pol-caption">The first fotbar</span>
+            </div>
+
+            <div class="polaroid">
+              <img src="assets/photos/kalung.jpg" alt="Deskripsi foto 2">
+              <!-- [EDIT OPSIONAL] Caption di bawah foto polaroid -->
+              <span class="pol-caption">Hadiah & coklat for you</span>
+            </div>
+
+            <!-- 🎥 VIDEO: Hapus blok .polaroid di atas,
+                 lalu uncomment blok .vid-wrap di bawah ini
+            <div class="vid-wrap">
+              <video controls playsinline>
+                <source src="assets/videos/video1.mp4" type="video/mp4">
+              </video>
+            </div>
+            -->
+
+          </div>
+
+          <!-- KOLOM TEKS -->
+          <div class="mem-text">
+            <!-- [EDIT] Tanggal momen (format bebas) -->
+            <p class="mem-date">17 Februari 2026</p>
+
+            <!-- [EDIT] Judul momen -->
+            <h2 class="mem-title">Ultah dan Hadiah Buat Kamu</h2>
+
+            <!-- [EDIT] Cerita singkat momen ini (2–4 kalimat) -->
+            <p class="body-text">
+              First date kitaa... <br>
+              Hahaha kaget yaa waktu itu tiba-tiba aku ngasi kado buat kamu.
+              Makasih yaa udah mau nerima hadiah sama coklatnya.
+            </p>
+
+            <!-- [EDIT OPSIONAL] Quote spesial. Hapus tag <blockquote> jika tidak mau. -->
+            <blockquote class="mem-quote">
+              "By the way, selain parasmu, aku juga mulai menyukai suaramu, sifatmu, dan cerita-cerita yang keluar dari mulut kecilmu itu..."
+            </blockquote>
+          </div>
+
+        </div>
+      </div>
+      <!-- Nomor urut kenangan (ganti angkanya) -->
+      <div class="mem-num">01</div>
+    </section>
+
+
+    <!-- KENANGAN #2 — layout dibalik: teks kiri, foto kanan -->
+    <section class="slide s-mem" data-slide="4">
+      <div class="center">
+        <!-- Tambah class "flip" untuk membalik posisi foto ke kanan -->
+        <div class="mem-grid">
+
+          <div class="mem-media">
+            <div class="polaroid">
+              <img src="assets/photos/biru1.jpg" alt="Deskripsi foto 2">
+              <span class="pol-caption">Fotbar 1</span>
+            </div>
+          </div>
+
+          <div class="mem-media">
+            <div class="polaroid">
+              <img src="assets/photos/biru2.jpg" alt="Deskripsi foto 2">
+              <span class="pol-caption">Fotbar 2</span>
+            </div>
+          </div>
+
+          <div class="mem-media">
+            <div class="polaroid">
+              <img src="assets/photos/biru3.jpg" alt="Deskripsi foto 2">
+              <span class="pol-caption">Fotbar 3</span>
+            </div>
+          </div>
+
+          <div class="mem-text">
+            <p class="mem-date">30 Maret 2026</p>
+            <h2 class="mem-title">Duo Biru-biru💙</h2>
+            <p class="body-text">
+              Jujur aku kaget tiba-tiba baju kita couple dan berakhir fotbar berdua. <br>
+              Jangan lupa besoknya kita berdua langsung dapet merah di SNBP hahaha...
+            </p>
+            <blockquote class="mem-quote">
+              "Selain dalam ingatan, syukurnya kita pernah mengabadikan kenangan kita berdua dengan beberapa potretan"
+            </blockquote>
+          </div>
+
+        </div>
+      </div>
+      <div class="mem-num">02</div>
+    </section>
+
+    <!-- KENANGAN #3 — layout: foto kiri, teks kanan -->
+    <section class="slide s-mem" data-slide="5">
+      <div class="center">
+        <div class="mem-grid flip">
+
+          <!-- KOLOM MEDIA -->
+          <div class="mem-media">
+
+            <!-- 📷 FOTO: Ganti src dan alt -->
+            <div class="polaroid">
+              <img src="assets/photos/tangan.jpg" alt="Deskripsi foto 1">
+              <!-- [EDIT OPSIONAL] Caption di bawah foto polaroid -->
+              <span class="pol-caption">Genggam tangan</span>
+            </div>
+
+            <div class="polaroid">
+              <img src="assets/photos/study.jpg" alt="Deskripsi foto 2">
+              <!-- [EDIT OPSIONAL] Caption di bawah foto polaroid -->
+              <span class="pol-caption">Study date</span>
+            </div>
+
+            <!-- 🎥 VIDEO: Hapus blok .polaroid di atas,
+                 lalu uncomment blok .vid-wrap di bawah ini
+            <div class="vid-wrap">
+              <video controls playsinline>
+                <source src="assets/videos/video1.mp4" type="video/mp4">
+              </video>
+            </div>
+            -->
+
+          </div>
+
+          <!-- KOLOM TEKS -->
+          <div class="mem-text">
+            <!-- [EDIT] Tanggal momen (format bebas) -->
+            <p class="mem-date">5 April 2026</p>
+
+            <!-- [EDIT] Judul momen -->
+            <h2 class="mem-title">Study Date UTBK</h2>
+
+            <!-- [EDIT] Cerita singkat momen ini (2–4 kalimat) -->
+            <p class="body-text">
+              Date kesukaan kita niehh.. wkwkwk. <br>
+              Seru bangett bisa ngajarin kamu, liat bingungnya kamu, liat plonga plongonya kamu wkwkwk. <br>
+              Makasii juga udah ngebolehin aku ngenggem sama senderan di bahumu.
+            </p>
+
+            <!-- [EDIT OPSIONAL] Quote spesial. Hapus tag <blockquote> jika tidak mau. -->
+            <blockquote class="mem-quote">
+              "Saat disampingmu aku merasa dapat menghadapi dunia dengan segala masalahnya..."
+            </blockquote>
+          </div>
+
+        </div>
+      </div>
+      <!-- Nomor urut kenangan (ganti angkanya) -->
+      <div class="mem-num">03</div>
+    </section>
+
+    <!-- KENANGAN #4 — CONTOH DENGAN VIDEO -->
+    <section class="slide s-mem" data-slide="6">
+      <div class="center">
+        <div class="mem-grid">
+
+          <div class="mem-media" style="display: contents;">
+            <!-- Contoh slide dengan video (uncomment dan hapus polaroid) -->
+            
+            <div class="vid-wrap">
+              <video controls playsinline>
+                <source src="assets/videos/bunga.mp4" type="video/mp4">
+              </video>
+            </div>
+           
+          <div class="mem-text">
+            <p class="mem-date">17 April 2026</p>
+            <h2 class="mem-title">Bunga For You</h2>
+            <p class="body-text">
+              Kaget untuk kedua kalinya? hahaha... <br>
+              Lucu banget liat ekspresimu waktu aku kasih bunga ituu.
+            </p>
+            <blockquote class="mem-quote">
+              "Bunga yang dibuat dengan tangan dan keringatku sendiri, Semoga itu abadi..."
+            </blockquote>
+          </div>
+
+        </div>
+      </div>
+      <div class="mem-num">04</div>
+    </section>
+    
+ <!-- KENANGAN #5 — CONTOH DENGAN VIDEO -->
+    <section class="slide s-mem" data-slide="7">
+      <div class="center">
+        <div class="mem-grid flip">
+
+          <div class="mem-media" style="display: contents;">
+            <!-- Contoh slide dengan video (uncomment dan hapus polaroid) -->
+            
+            <div class="vid-wrap">
+              <video controls playsinline>
+                <source src="assets/videos/bunga.mp4" type="video/mp4">
+              </video>
+            </div>
+           
+          <div class="mem-text">
+            <p class="mem-date">25 Mei 2026</p>
+            <h2 class="mem-title">Akhirnya Lolos Berdua</h2>
+            <p class="body-text">
+              BAGUS JJ-NYA AKU SUKAA.... <br>
+              Terimakasih buat diri kita berdua udah saling support, saling bantu, serta saling mendo'akan satu sama lain.
+            </p>
+            <blockquote class="mem-quote">
+              "Usaha dan do'a kita ternyata tidak menghianati hasilnya yaa... selamat untukmu dan untukku...."
+            </blockquote>
+          </div>
+
+        </div>
+      </div>
+      <div class="mem-num">05</div>
+    </section>
+
+    <!-- ===========================================================
+      SLIDE PENUTUP (selalu taruh di paling bawah)
+      ✏️ Edit teks penutup di bawah
+    =========================================================== -->
+    <section class="slide s-closing" data-slide="8">
+      <div class="center">
+        <div class="closing-box">
+
+          <!-- [EDIT OPSIONAL] Kata pengantar penutup -->
+          <span class="script-tag">...dan masih banyak lagi.</span>
+
+          <!-- [EDIT] Kalimat penutup utama -->
+          <h2 class="closing-title">Terima kasih untukmu yang telah bersedia hadir di hidupku.</h2>
+
+          <!-- [EDIT] Pesan penutup -->
+          <p class="body-text">
+            Sekali lagi, aku mau banyak-banyak berterimakasih kepadamu.
+            Aku ga akan pernah menyesal atas kehadiranmu di hidupku. Entah itu sementara atau akan selamanya, aku sangat bersyukur dapat pernah mendukung dan berdiri di sampingmu. <br> <br>
+            Terima kasih telah menjadi Teman, Partner, Rekan, Support system, HTS, sekaligus Orang yang dapat kucintai sepenuh hati.
+            Entah takdir akan menyatukan kita kembali ataupun tidak, aku sudah mencoba untuk ikhlas dan lapang dada untuk berpisah denganmu wahai wanita favoritku.
+            Jangan pernah lupain aku yaa... sebagai sesosok yang pernah datang dan mengisi kekosongan di kehidupanmu.
+          </p>
+
+          <!-- [EDIT] Tanda tangan / nama kamu -->
+          <p class="signature">— Haqqi N.</p>
+
+          <button class="btn-outline" onclick="toSlide(1)">↑ Kembali ke Awal</button>
+
+        </div>
+      </div>
+      <div class="corner-tl"></div>
+      <div class="corner-br"></div>
+    </section>
+
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
