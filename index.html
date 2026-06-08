@@ -4,9 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- ================================================
-    📝 [EDIT] Ganti judul tab browser di bawah ini
-  ================================================ -->
   <title>Kenangan Kita ✨</title>
 
   <link rel="stylesheet" href="style.css">
@@ -16,16 +13,12 @@
 </head>
 <body>
 
-  <!-- Nav dots (diisi otomatis oleh script.js, jangan diubah) -->
   <nav class="nav-dots" id="navDots"></nav>
 
-  <!-- Efek grain film (jangan diubah) -->
   <div class="grain"></div>
 
   <!-- ================================================
     🎵 BACKGROUND MUSIC
-    📝 [EDIT] Ganti path file musik di bawah ini.
-         Taruh file MP3 di folder assets/music/
   ================================================ -->
   <audio id="bgMusic" loop>
     <source src="assets/music/lagu.mp3" type="audio/mpeg">
@@ -33,33 +26,31 @@
 
 
   <!-- ============================================================
-    SLIDES CONTAINER (jangan ubah tag <main> ini)
+    SLIDES CONTAINER
   ============================================================ -->
   <main class="wrap" id="wrap">
 
 
     <!-- ===========================================================
       SLIDE 1 ✨ UCAPAN PEMBUKA
-      Edit teks di antara komentar [EDIT] dan [/EDIT]
     =========================================================== -->
     <section class="slide s-welcome" data-slide="1">
       <div class="center">
         <div class="welcome-box">
 
-          <!-- [EDIT] Kata sapaan (contoh: "Untuk", "Hey,", "Khusus untuk") -->
+          <!-- Kata sapaan  -->
           <span class="script-tag">Hii..</span>
 
-          <!-- [EDIT] Nama orang yang dituju -->
+          <!-- Nama -->
           <h1 class="big-name">Salwa Atika Wardani</h1>
 
-          <!-- [EDIT] Pesan pembuka. 2–4 kalimat sudah cukup. -->
+          <!-- Pesan pembuka. -->
           <p class="body-text">
             Pertama-tama makasih ya salwa udah meluangkan secercah waktumu buat buka website jelek inii wkwkwk.
             Ini mungkin hadiah terakhirku buat kamuu, isinya kenangan-kenangan kita berdua. <br>
             Btw aku buat ini biar kamu inget atau bisa nostalgia aja si kalo kita berdua pernah bersama hahaha....
           </p>
 
-          <!-- [EDIT OPSIONAL] Ganti teks tombol jika mau -->
           <button class="btn-outline" onclick="toSlide(2)">Mulai ↓</button>
 
         </div>
@@ -98,7 +89,6 @@
             <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
           </div>
 
-          <!-- [EDIT OPSIONAL] Ganti teks tombol -->
           <button class="btn-outline" style="margin-top: 28px;" onclick="toSlide(3)">
             Lihat Kenangan →
           </button>
@@ -138,43 +128,34 @@
             <!-- 📷 FOTO: Ganti src dan alt -->
             <div class="polaroid">
               <img src="assets/photos/fotbar1.jpg" alt="Deskripsi foto 1">
-              <!-- [EDIT OPSIONAL] Caption di bawah foto polaroid -->
+              <!-- Caption di bawah foto polaroid -->
               <span class="pol-caption">The first fotbar</span>
             </div>
 
             <div class="polaroid">
               <img src="assets/photos/kalung.jpg" alt="Deskripsi foto 2">
-              <!-- [EDIT OPSIONAL] Caption di bawah foto polaroid -->
+              <!-- Caption di bawah foto polaroid -->
               <span class="pol-caption">Hadiah & coklat for you</span>
             </div>
-
-            <!-- 🎥 VIDEO: Hapus blok .polaroid di atas,
-                 lalu uncomment blok .vid-wrap di bawah ini
-            <div class="vid-wrap">
-              <video controls playsinline>
-                <source src="assets/videos/video1.mp4" type="video/mp4">
-              </video>
-            </div>
-            -->
 
           </div>
 
           <!-- KOLOM TEKS -->
           <div class="mem-text">
-            <!-- [EDIT] Tanggal momen (format bebas) -->
+            <!--  Tanggal momen -->
             <p class="mem-date">17 Februari 2026</p>
 
-            <!-- [EDIT] Judul momen -->
+            <!--  Judul momen -->
             <h2 class="mem-title">Ultah dan Hadiah Buat Kamu</h2>
 
-            <!-- [EDIT] Cerita singkat momen ini (2–4 kalimat) -->
+            <!-- Cerita singkat momen ini -->
             <p class="body-text">
               First date kitaa... <br>
               Hahaha kaget yaa waktu itu tiba-tiba aku ngasi kado buat kamu.
               Makasih yaa udah mau nerima hadiah sama coklatnya.
             </p>
 
-            <!-- [EDIT OPSIONAL] Quote spesial. Hapus tag <blockquote> jika tidak mau. -->
+            <!--  Quote spesial. Hapus tag <blockquote> jika tidak mau. -->
             <blockquote class="mem-quote">
               "By the way, selain parasmu, aku juga mulai menyukai suaramu, sifatmu, dan cerita-cerita yang keluar dari mulut kecilmu itu..."
             </blockquote>
@@ -252,33 +233,24 @@
               <span class="pol-caption">Study date</span>
             </div>
 
-            <!-- 🎥 VIDEO: Hapus blok .polaroid di atas,
-                 lalu uncomment blok .vid-wrap di bawah ini
-            <div class="vid-wrap">
-              <video controls playsinline>
-                <source src="assets/videos/video1.mp4" type="video/mp4">
-              </video>
-            </div>
-            -->
-
           </div>
 
           <!-- KOLOM TEKS -->
           <div class="mem-text">
-            <!-- [EDIT] Tanggal momen (format bebas) -->
+            <!-- Tanggal momen -->
             <p class="mem-date">5 April 2026</p>
 
-            <!-- [EDIT] Judul momen -->
+            <!-- Judul momen -->
             <h2 class="mem-title">Study Date UTBK</h2>
 
-            <!-- [EDIT] Cerita singkat momen ini (2–4 kalimat) -->
+            <!-- Cerita singkat momen ini -->
             <p class="body-text">
               Date kesukaan kita niehh.. wkwkwk. <br>
-              Seru bangett bisa ngajarin kamu, liat bingungnya kamu, liat plonga plongonya kamu wkwkwk. <br>
+              Seru bangett bisa ngajarin kamu, liat bingungnya kamu, liat plonga plongonya kamu secara langsung wkwkwk. <br>
               Makasii juga udah ngebolehin aku ngenggem sama senderan di bahumu.
             </p>
 
-            <!-- [EDIT OPSIONAL] Quote spesial. Hapus tag <blockquote> jika tidak mau. -->
+            <!-- Quote spesial. Hapus tag <blockquote> jika tidak mau. -->
             <blockquote class="mem-quote">
               "Saat disampingmu aku merasa dapat menghadapi dunia dengan segala masalahnya..."
             </blockquote>
@@ -312,7 +284,7 @@
               Lucu banget liat ekspresimu waktu aku kasih bunga ituu.
             </p>
             <blockquote class="mem-quote">
-              "Bunga yang dibuat dengan tangan dan keringatku sendiri, Semoga itu abadi..."
+              "Bunga yang kubuat dengan tangan dan keringatku sendiri, Semoga itu abadi..."
             </blockquote>
           </div>
 
@@ -340,10 +312,10 @@
             <h2 class="mem-title">Akhirnya Lolos Berdua</h2>
             <p class="body-text">
               BAGUS JJ-NYA AKU SUKAA.... <br>
-              Terimakasih buat diri kita berdua udah saling support, saling bantu, serta saling mendo'akan satu sama lain.
+              Terimakasih buat diri kita berdua yang udah saling support, saling bantu, dan saling mendo'akan satu sama lain.
             </p>
             <blockquote class="mem-quote">
-              "Usaha dan do'a kita ternyata tidak menghianati hasilnya yaa... selamat untukmu dan untukku...."
+              "Usaha dan do'a kita ternyata tidak menghianati hasilnya yaa... selamat untukmu dan juga untukku...."
             </blockquote>
           </div>
 
@@ -354,7 +326,6 @@
 
     <!-- ===========================================================
       SLIDE PENUTUP (selalu taruh di paling bawah)
-      ✏️ Edit teks penutup di bawah
     =========================================================== -->
     <section class="slide s-closing" data-slide="8">
       <div class="center">
